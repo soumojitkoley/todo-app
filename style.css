@@ -1,0 +1,359 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  background-color: #212529;
+  color: white;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+::placeholder {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  margin-top: 30px;
+}
+
+.title,
+span {
+  user-select: none;
+}
+h1 {
+  border: none;
+  padding: 10px;
+  outline: none;
+  color: white;
+  font-style: 1.2em;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  background: none;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.45);
+}
+
+h1:before,
+h1:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 10em;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  width: 105%;
+  height: 105%;
+  content: "";
+  z-index: -2;
+  background-size: 400% 400%;
+  background: linear-gradient(
+    60deg,
+    #f79533,
+    #f37055,
+    #ef4e7b,
+    #a166ab,
+    #5073b8,
+    #1098ad,
+    #07b39b,
+    #6fba82
+  );
+}
+
+h1:before {
+  -webkit-filter: blur(7px);
+  filter: blur(7px);
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  -webkit-animation: pulse 10s infinite ease;
+  animation: pulse 10s infinite ease;
+}
+
+h1:after {
+  -webkit-filter: blur(0.3px);
+  filter: blur(0.3px);
+}
+
+h1:hover:before {
+  width: 115%;
+  height: 115%;
+}
+
+.add-task {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.input-box {
+  position: relative;
+  padding: 10px;
+  width: 30em;
+  outline: none;
+  border: 2px solid #303030;
+  background: #212121;
+  font-size: 15px;
+  overflow: hidden;
+  transition: 0.2s;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+}
+
+.input-box:hover,
+.input-box:focus {
+  box-shadow: 0 0 10px #ae00ff, 0 0 25px #001eff, 0 0 50px #ae00ff;
+}
+
+.add-btn {
+  padding: 10px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-image: linear-gradient(
+    109.6deg,
+    rgba(61, 245, 167, 1) 11.2%,
+    rgba(9, 111, 224, 1) 91.1%
+  );
+}
+
+.add-btn:hover {
+  box-shadow: 0 0 10px #03eaed, 0 0 25px #04e790, 0 0 50px #06cce7;
+}
+
+.task-list {
+  height: auto;
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.list-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  border: 1px solid white;
+  padding: 20px 35px;
+  max-width: 90%;
+  border-radius: 20px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.checkbox-p {
+  display: flex;
+  gap: 20px;
+}
+
+.box-style {
+  display: none;
+}
+
+.check {
+  cursor: pointer;
+  position: relative;
+  margin: auto;
+  width: 18px;
+  height: 18px;
+  -webkit-tap-highlight-color: transparent;
+  transform: translate3d(0, 0, 0);
+}
+
+.check:before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(34, 50, 84, 0.03);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.check svg {
+  position: relative;
+  z-index: 1;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #c8ccd4;
+  stroke-width: 1.5;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.2s ease;
+}
+
+.check svg path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 0;
+}
+
+.check svg polyline {
+  stroke-dasharray: 22;
+  stroke-dashoffset: 66;
+}
+
+.check:hover:before {
+  opacity: 1;
+}
+
+.check:hover svg {
+  stroke: #0bef13;
+}
+
+.box-style:checked + .check svg {
+  stroke: #09e744;
+}
+
+.box-style:checked + .check svg path {
+  stroke-dashoffset: 60;
+  transition: all 0.3s linear;
+}
+
+.box-style:checked + .check svg polyline {
+  stroke-dashoffset: 42;
+  transition: all 0.2s linear;
+  transition-delay: 0.15s;
+}
+
+.save-edit-del {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+}
+
+.edit-btn,
+.del-btn,
+.save-btn {
+  border-radius: 15px;
+  cursor: pointer;
+  user-select: none;
+}
+
+i {
+  user-select: none;
+}
+
+.task-content {
+  width: 300px;
+  position: relative;
+  padding: 10px;
+  outline: none;
+  overflow: hidden;
+  transition: 0.2s;
+  border-radius: 25px;
+  cursor: pointer;
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+  .task-list {
+    width: 100%;
+  }
+  .list-div {
+    max-width: 100%;
+    gap: 30px;
+  }
+  .task-content {
+    text-align: center;
+    width: 200px;
+  }
+  .input-box {
+    width: 18em;
+  }
+  .check:hover svg {
+    stroke: #c8ccd4;
+  }
+
+  .add-btn:hover {
+    box-shadow: none;
+  }
+
+  h1 {
+    border: none;
+    padding: 10px;
+    outline: none;
+    color: white;
+    font-style: 1.2em;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    background: none;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.45);
+  }
+
+  h1:before,
+  h1:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 10em;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    width: 105%;
+    height: 105%;
+    content: "";
+    z-index: -2;
+    background-size: 400% 400%;
+    background: linear-gradient(
+      60deg,
+      #f79533,
+      #f37055,
+      #ef4e7b,
+      #a166ab,
+      #5073b8,
+      #1098ad,
+      #07b39b,
+      #6fba82
+    );
+  }
+
+  h1:before {
+    -webkit-filter: blur(7px);
+    filter: blur(7px);
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    -webkit-animation: pulse 10s infinite ease;
+    animation: pulse 10s infinite ease;
+    width: 115%;
+    height: 115%;
+  }
+
+  h1:after {
+    -webkit-filter: blur(0.3px);
+    filter: blur(0.3px);
+    color: #01dbf8;
+  }
+
+  .input-box:hover {
+    box-shadow: none;
+  }
+
+  .input-box:focus {
+    box-shadow: 0 0 10px #ae00ff, 0 0 25px #001eff, 0 0 50px #ae00ff;
+  }
+}
